@@ -1,127 +1,453 @@
 <!DOCTYPE html>
- <html lang="ca">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link ref="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
-    <title>Amics del bonsai de Cerdanyola del Vallès</title>
+<html lang="ca" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amics del Bonsai de Cerdanyola del Vallès</title>
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Serif/Editorial style for tradition, Sans for clean reading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style type="text/css">
-      @media (min-width: 768px) {
-      body { padding-top: 20px; padding-bottom: 20px;}
-      .container { max-width: 740px;}
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bonsai: {
+              50: '#FCFAF6',    // Soft cream / washi tint
+              100: '#F4F2EB',   // Warmer washi tone
+              200: '#EADFC9',   // Warm earth/sand
+              green: '#1F402B', // Deep forest/bonsai green
+              red: '#A24A3B',   // Lacquer / Terracotta red
+              stone: '#4A4C4A', // Stone gray for high reading contrast
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
       }
+    }
+  </script>
 
-      @media (max-width: 400px) {
-      .fotos { height: 266px; }
-      .mapa { height: 300px; }
-      .twitter-timeline { height: 300px; }
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FCFAF6;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+
+<body class="bg-bonsai-50 text-stone-800 antialiased min-h-screen flex flex-col selection:bg-bonsai-green selection:text-white">
+
+  <!-- ================= HEADER (ESTIL BOTIGA JAPONESA / EDITORIAL) ================= -->
+  <header class="bg-bonsai-50 border-b border-stone-100 sticky top-0 z-50">
+    <!-- Top thin strip -->
+    <div class="bg-bonsai-100/50 text-stone-500 text-center py-2.5 text-[10px] sm:text-xs uppercase tracking-widest border-b border-stone-200/40 select-none">
+      Associació cultural de Cerdanyola del Vallès — Dijous i dissabtes de 17:00 a 20:00
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
       
-      }
+      <!-- Left: Real Logo + Title -->
+      <a href="#hero" class="flex items-center space-x-3 group select-none">
+        <img src="amicsbonsai.gif" alt="Logo Amics del Bonsai" class="h-12 w-auto object-contain">
+        <div>
+          <span class="font-serif font-bold text-lg md:text-xl text-bonsai-green group-hover:text-stone-900 transition tracking-tight block leading-tight">Amics del Bonsai</span>
+          <span class="text-[10px] text-stone-500 font-medium tracking-widest uppercase block leading-none">Cerdanyola del Vallès</span>
+        </div>
+      </a>
 
-      body { background: #fafafa url("blizzard.png") repeat;
-      font: 300 16px "Lato",sans-serif;
-      }
+      <!-- Menu links in Catalan -->
+      <nav class="hidden md:flex items-center space-x-8 text-xs font-medium uppercase tracking-widest text-stone-600">
+        <a href="#qui-som" class="hover:text-bonsai-green transition">Qui som</a>
+        <a href="#que-fem" class="hover:text-bonsai-green transition">Què fem</a>
+        <a href="#horaris" class="hover:text-bonsai-green transition">Horaris i ubicació</a>
+        <a href="#galeria" class="hover:text-bonsai-green transition">Galeria</a>
+        <a href="#contacto" class="hover:text-bonsai-green transition">Contacte</a>
+      </nav>
 
-      h1 {
-      font-weight: 600;
-      }
+      <!-- Hamburger mobile -->
+      <button id="mobile-menu-toggle" type="button" class="md:hidden p-2 rounded text-stone-600 hover:bg-bonsai-100 focus:outline-none" aria-label="Toggle Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
 
-      .card { 
-      border: 1px solid #eaeaea; 
-      background-color: #fff; 
-      padding: 20px; 
-      margin-bottom: 20px;
-      }      
+    <!-- Mobile slide-down menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-bonsai-50 border-b border-stone-200 px-4 py-4 flex flex-col space-y-3 font-medium text-xs uppercase tracking-wider text-stone-600">
+      <a href="#qui-som" onclick="toggleMenu()" class="py-2 hover:text-stone-900">Qui som</a>
+      <a href="#que-fem" onclick="toggleMenu()" class="py-2 hover:text-stone-900">Què fem</a>
+      <a href="#horaris" onclick="toggleMenu()" class="py-2 hover:text-stone-900">Horaris i ubicació</a>
+      <a href="#galeria" onclick="toggleMenu()" class="py-2 hover:text-stone-900">Galeria</a>
+      <a href="#contacto" onclick="toggleMenu()" class="py-2 hover:text-stone-900">Contacte</a>
+    </div>
+  </header>
 
-      .destacat {
-      background-color: #ffffc6;
-      border-color: #eeeeb5;
-      }
+  <main class="flex-grow">
 
-      .destacat .glyphicon {
-      font-size: 30px;
-      }
+    <!-- ================= SECTION 1: HERO (ESTIL BONSAI PLAZA CREMA + VERD FOREST / VERMELL LACAT) ================= -->
+    <section id="hero" class="relative w-full bg-bonsai-100 py-12 md:py-16 border-b border-stone-200/60">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+        
+        <!-- Text for small screens (Responsive) -->
+        <div class="md:hidden text-center mb-8 px-2 flex flex-col items-center select-none">
+          <h1 class="font-serif font-bold text-3xl text-stone-800 leading-tight">Amics del Bonsai de Cerdanyola del Vallès</h1>
+          <p class="text-stone-600 font-light italic text-base mt-2">“Un espai per aprendre, compartir i guudir del bonsai”</p>
+          <a href="#contacto" class="mt-5 inline-flex items-center px-6 py-3 bg-bonsai-green text-white font-medium text-sm rounded hover:bg-stone-900 transition duration-300">
+            VINE A CONÈIXER-NOS
+          </a>
+        </div>
+
+        <!-- 3-Image Showcase Carousel Center aligned exactly as depicted in the Bonsai Plaza screenshot -->
+        <div class="relative flex items-center justify-between w-full max-w-6xl mx-auto select-none">
+          
+          <!-- Prev Button -->
+          <button onclick="carouselPrev()" class="absolute -left-2 md:-left-6 z-20 w-10 h-10 bg-stone-900/80 hover:bg-stone-900 text-white border border-white/20 rounded-full flex items-center justify-center transition hover:scale-105 shadow">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+
+          <!-- The 3 Showcase Grid -->
+          <div class="flex flex-row justify-center items-center gap-4 md:gap-6 w-full px-2">
+            
+            <!-- Left panel (Smaller) -->
+            <div id="carousel-left-panel" class="hidden sm:block w-1/3 h-[420px] md:h-[480px] overflow-hidden bg-white shadow-sm border border-stone-200/60 select-none">
+              <img id="img-left" src="bonsai-1.jpg" onerror="this.onerror=null; this.src='bonsai_winter.png'" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Middle panel (Larger/Prominent) -->
+            <div id="carousel-middle-panel" class="w-full sm:w-1/3 h-[480px] md:h-[540px] overflow-hidden bg-white shadow-md border border-stone-200/80 select-none transform sm:scale-105">
+              <img id="img-middle" src="bonsai-2.jpg" onerror="this.onerror=null; this.src='bonsai_green.png'" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Right panel (With Text Overlay) -->
+            <div id="carousel-right-panel" class="hidden sm:block w-1/3 h-[420px] md:h-[480px] overflow-hidden bg-white shadow-sm border border-stone-200/60 select-none relative">
+              <img id="img-right" src="bonsai-3.jpg" onerror="this.onerror=null; this.src='bonsai_windswept.png'" class="w-full h-full object-cover">
+              
+              <!-- Text Overlay over rightmost image panel exactly like Bonsai Plaza! -->
+              <div class="absolute inset-0 bg-stone-900/25 flex flex-col justify-end p-6 text-white select-none">
+                <h3 class="font-serif font-bold text-xl md:text-2xl leading-tight">Amics del Bonsai de Cerdanyola</h3>
+                <p class="text-xs sm:text-sm mt-2 font-light opacity-90 leading-snug max-w-xs">“Un espai per aprendre, compartir i gaudir del bonsai”</p>
+                <a href="#contacto" class="mt-4 inline-flex items-center justify-center px-4 py-2 bg-bonsai-red text-white font-medium text-xs tracking-wider uppercase hover:bg-stone-900 transition duration-300 self-start border border-white/20 select-none">
+                  VINE A CONÈIXER-NOS →
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Next Button -->
+          <button onclick="carouselNext()" class="absolute -right-2 md:-right-6 z-20 w-10 h-10 bg-stone-900/80 hover:bg-stone-900 text-white border border-white/20 rounded-full flex items-center justify-center transition hover:scale-105 shadow">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION 2: QUI SOM ================= -->
+    <section id="qui-som" class="py-24 bg-white border-b border-stone-200/40 relative">
+      <div class="max-w-5xl mx-auto px-4 text-center flex flex-col space-y-6">
+        <span class="text-xs font-semibold text-bonsai-red uppercase tracking-widest select-none">Associació cultural</span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green leading-tight">
+          Qui som
+        </h2>
+        <p class="text-stone-600 font-light text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+          Som una associació d'aficionats i entusiastes del bonsai de Cerdanyola del Vallès. Un punt de trobada on compartim la nostra passió per la natura, l'art i la paciència que requereix el cultiu d'aquests petits arbres.
+        </p>
+        <p class="text-stone-600 font-light text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+          Estem oberts a tothom, tant a principiants que volen iniciar-se en aquest món com a persones amb experiència que vulguin seguir aprenent i col·laborant amb altres aficionats.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION 3: QUÈ FEM ================= -->
+    <section id="que-fem" class="py-20 bg-bonsai-50 border-b border-stone-200/40 relative">
+      <div class="max-w-7xl mx-auto px-4">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 flex flex-col space-y-3">
+          <span class="text-xs font-semibold text-bonsai-red uppercase tracking-widest select-none">Cultura i tradició</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green">Què fem</h2>
+          <p class="text-stone-500 font-light text-base leading-relaxed">
+            Activitats dedicades al món del bonsai, obertes a tots els amants de la natura.
+          </p>
+        </div>
+
+        <!-- 3 simple columns -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="bg-white border border-stone-200/60 p-8 flex flex-col min-h-[260px] select-none hover:shadow-sm hover:border-bonsai-200 transition duration-300">
+            <h3 class="font-serif font-bold text-xl text-bonsai-green mb-3 uppercase tracking-tight">Reunions setmanals</h3>
+            <p class="text-stone-600 font-light text-sm leading-relaxed">
+              Ens trobem cada dijous i dissabte de 17:00 a 20:00 per treballar conjuntament en els nostres arbres, parlar sobre el seu desenvolupament i intercanviar idees i experiències.
+            </p>
+          </div>
+
+          <div class="bg-white border border-stone-200/60 p-8 flex flex-col min-h-[260px] select-none hover:shadow-sm hover:border-bonsai-200 transition duration-300">
+            <h3 class="font-serif font-bold text-xl text-bonsai-green mb-3 uppercase tracking-tight">Tallers i formació</h3>
+            <p class="text-stone-600 font-light text-sm leading-relaxed">
+              Realitzem tasques de cura i manteniment: poda, trasplantament, filat, formació i totes les tècniques necessàries per mantenir els bonsais sans.
+            </p>
+          </div>
+
+          <div class="bg-white border border-stone-200/60 p-8 flex flex-col min-h-[260px] select-none hover:shadow-sm hover:border-bonsai-200 transition duration-300">
+            <h3 class="font-serif font-bold text-xl text-bonsai-green mb-3 uppercase tracking-tight">Mostres i exposicions</h3>
+            <p class="text-stone-600 font-light text-sm leading-relaxed">
+              Organitzem i participem en exposicions locals i nacionals (com la coneguda Tenji no Bonsai) per divulgar i apropar aquest art tradicional al públic.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION 4: HORARIS I UBICACIÓ ================= -->
+    <section id="horaris" class="py-20 bg-white border-b border-stone-200/40 relative">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        
+        <div class="md:col-span-5 flex flex-col space-y-6">
+          <span class="text-xs font-semibold text-bonsai-red uppercase tracking-widest select-none">Visita'ns</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green leading-tight">Horaris i ubicació</h2>
+          <p class="text-stone-600 font-light leading-relaxed text-base">
+            Estem situats a Cerdanyola del Vallès. Vine a compartir la teva afició pels arbres en un ambient relaxat.
+          </p>
+
+          <div class="bg-bonsai-100/50 p-6 border border-stone-200/60 space-y-6">
+            <div>
+              <h4 class="font-serif font-bold text-base uppercase text-bonsai-green">Dies de reunió</h4>
+              <p class="text-stone-600 font-light text-sm mt-1">Cada dijous i dissabte de 17:00 a 20:00.</p>
+            </div>
+            <hr class="border-stone-200/80">
+            <div>
+              <h4 class="font-serif font-bold text-base uppercase text-bonsai-green">Adreça del local</h4>
+              <p class="text-stone-600 font-light text-sm mt-1">Carrer de la Indústria, 20<br>08290 Cerdanyola del Vallès</p>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?q=Carrer+de+la+Industria+20+Cerdanyola+del+Valles" target="_blank" rel="noopener noreferrer" class="self-start inline-flex items-center text-bonsai-red font-bold hover:text-stone-600 transition text-xs uppercase tracking-wider">
+            Com arribar-hi →
+          </a>
+        </div>
+
+        <div class="md:col-span-7 h-[400px] bg-[#fafafa] border border-stone-200 overflow-hidden select-none">
+          <iframe class="w-full h-full" alt="Carrer de la Indústria, 20. 08290 Cerdanyola del Vallès" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+de+la+Ind%C3%BAstria,+20,+Cerdanyola+del+Vall%C3%A8s,+Espanya&amp;aq=0&amp;oq=carred+industria+20,+cerdanyo&amp;sll=41.487963,2.13841&amp;sspn=0.006317,0.011362&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+de+la+Ind%C3%BAstria,+20,+08290+Cerdanyola+del+Vall%C3%A8s,+Barcelona,+Catalu%C3%B1a,+Catalonia,+Espanya&amp;ll=41.487966,2.138407&amp;spn=0.006317,0.011362&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION 5: GALERIA I MOSTRES ================= -->
+    <section id="galeria" class="py-20 bg-bonsai-50">
+      <div class="max-w-7xl mx-auto px-4">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 flex flex-col space-y-3">
+          <span class="text-xs font-semibold text-bonsai-red uppercase tracking-widest select-none">Exposicions</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green">Mostres i galeria</h2>
+          <p class="text-stone-500 font-light text-base leading-relaxed">
+            Un recorregut visual per les nostres exposicions més destacades.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          
+          <!-- Card 1 -->
+          <div class="bg-white border border-stone-200/60 overflow-hidden flex flex-col hover:border-bonsai-200 transition duration-300">
+            <div class="aspect-[4/3] bg-stone-100 overflow-hidden relative border-b border-stone-100 select-none">
+              <img src="bonsai-1.jpg" onerror="this.onerror=null; this.src='bonsai_winter.png'" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h4 class="font-serif font-bold text-lg uppercase text-bonsai-green leading-tight">Tenji no bonsai 2015</h4>
+              <p class="text-stone-500 font-light text-sm mt-2 leading-relaxed">
+                Mostra Nacional de Kusamono organitzada al jardí del Museu d'Art de Cerdanyola.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white border border-stone-200/60 overflow-hidden flex flex-col hover:border-bonsai-200 transition duration-300">
+            <div class="aspect-[4/3] bg-stone-100 overflow-hidden relative border-b border-stone-100 select-none">
+              <img src="bonsai-4.jpg" onerror="this.onerror=null; this.src='bonsai_spring.png'" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h4 class="font-serif font-bold text-lg uppercase text-bonsai-green leading-tight">Roser de Maig 2013</h4>
+              <p class="text-stone-500 font-light text-sm mt-2 leading-relaxed">
+                La nostra tradicional participació anual a les festes locals de Cerdanyola.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white border border-stone-200/60 overflow-hidden flex flex-col hover:border-bonsai-200 transition duration-300">
+            <div class="aspect-[4/3] bg-stone-100 overflow-hidden relative border-b border-stone-100 select-none">
+              <img src="bonsai-2.jpg" onerror="this.onerror=null; this.src='bonsai_green.png'" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h4 class="font-serif font-bold text-lg uppercase text-bonsai-green leading-tight">Tenji no bonsai 2010</h4>
+              <p class="text-stone-500 font-light text-sm mt-2 leading-relaxed">
+                Una de les nostres primeres mostres de bonsai i kusamono.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION 6: CONTACTE ================= -->
+    <section id="contacto" class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 text-center flex flex-col items-center space-y-8">
+        
+        <div class="flex flex-col items-center space-y-3">
+          <span class="text-xs font-semibold text-bonsai-red uppercase tracking-widest select-none">Comunitat</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green leading-tight">Contacte</h2>
+          <p class="text-stone-600 font-light text-base max-w-md">
+            Vine a veure'ns directament o envia'ns un missatge.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl select-none">
+          
+          <a href="mailto:amics@bonsaicerdanyola.cat" class="flex flex-col justify-center items-center bg-bonsai-50 border border-stone-200/60 p-6 hover:bg-bonsai-100/50 hover:border-bonsai-200 transition duration-300">
+            <i data-lucide="mail" class="w-6 h-6 text-bonsai-green mb-2"></i>
+            <span class="text-xs uppercase text-stone-500 font-medium tracking-wide">Escriu-nos a</span>
+            <span class="text-base font-bold text-bonsai-green mt-1 select-all break-all">amics@bonsaicerdanyola.cat</span>
+          </a>
+
+          <a href="tel:936926268" class="flex flex-col justify-center items-center bg-bonsai-50 border border-stone-200/60 p-6 hover:bg-bonsai-100/50 hover:border-bonsai-200 transition duration-300">
+            <i data-lucide="phone" class="w-6 h-6 text-bonsai-green mb-2"></i>
+            <span class="text-xs uppercase text-stone-500 font-medium tracking-wide">Truca'ns al</span>
+            <span class="text-base font-bold text-bonsai-green mt-1 select-all">93 692 62 68</span>
+          </a>
+
+        </div>
+
+        <!-- Contact Form -->
+        <form onsubmit="event.preventDefault(); alert('Gràcies! El teu missatge s\'ha enviat correctament.'); this.reset();" class="w-full max-w-2xl bg-white border border-stone-200/60 p-8 flex flex-col space-y-5 text-left select-none shadow-sm hover:border-bonsai-200 transition duration-300">
+          <div>
+            <label for="form-nom" class="block text-xs uppercase tracking-wider font-semibold text-bonsai-green mb-2">Nom complet</label>
+            <input type="text" id="form-nom" required class="w-full border border-stone-200 p-3 bg-bonsai-50/40 text-stone-800 text-sm focus:border-bonsai-green focus:outline-none focus:ring-0 transition duration-200">
+          </div>
+          <div>
+            <label for="form-email" class="block text-xs uppercase tracking-wider font-semibold text-bonsai-green mb-2">Correu electrònic</label>
+            <input type="email" id="form-email" required class="w-full border border-stone-200 p-3 bg-bonsai-50/40 text-stone-800 text-sm focus:border-bonsai-green focus:outline-none focus:ring-0 transition duration-200">
+          </div>
+          <div>
+            <label for="form-missatge" class="block text-xs uppercase tracking-wider font-semibold text-bonsai-green mb-2">Missatge o consulta</label>
+            <textarea id="form-missatge" rows="4" required class="w-full border border-stone-200 p-3 bg-bonsai-50/40 text-stone-800 text-sm focus:border-bonsai-green focus:outline-none focus:ring-0 transition duration-200"></textarea>
+          </div>
+          <button type="submit" class="w-full sm:w-auto self-start bg-bonsai-green hover:bg-stone-900 text-white font-medium text-xs uppercase tracking-wider px-6 py-3 border border-stone-200/40 transition duration-300">
+            Enviar consulta →
+          </button>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-bonsai-50 border-t border-stone-100 py-12">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 select-none">
       
-      .logo {margin: 10px;}
-
-      .header {
-      padding-bottom: 20px;
-      text-align: center;
-      }
-
-      .footer { 
-      text-align: center;
-      color: #aaa;
-      }
-      
-      .contacte {
-      font-size: 24px;
-      }
-
-    </style>
-    
-  </head>
-  <body>
-    <div class="container header">
-      <div class="row">
-	<div class="col-sm-12">
-	  <img width="103" height="138" src="amicsbonsai.gif" class="logo"/><br/>
-	  <h1>Amics del bonsai de Cerdanyola del Vallès</h1>
-	  <p class="lead">Ens reunim cada dijous i dissabte de 17:00 a 20:00.</p>
-	</div>
-      </div>	    
-    </div>
-
-
-   <div class="container card">
-      <div class ="row">
-	<div class="col-sm-12">
-	  <p>Si ens vols conèixer vine a veure'ns. Tenim el local a:</p>
-	  <p><iframe class="mapa" alt="Carrer de la Indústria, 20. 08290 Cerdanyola del Vallès" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+de+la+Ind%C3%BAstria,+20,+Cerdanyola+del+Vall%C3%A8s,+Espanya&amp;aq=0&amp;oq=carred+industria+20,+cerdanyo&amp;sll=41.487963,2.13841&amp;sspn=0.006317,0.011362&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+de+la+Ind%C3%BAstria,+20,+08290+Cerdanyola+del+Vall%C3%A8s,+Barcelona,+Catalu%C3%B1a,+Catalonia,+Espanya&amp;ll=41.487966,2.138407&amp;spn=0.006317,0.011362&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=ca&amp;geocode=&amp;q=Carrer+de+la+Ind%C3%BAstria,+20,+Cerdanyola+del+Vall%C3%A8s,+Espanya&amp;aq=0&amp;oq=carred+industria+20,+cerdanyo&amp;sll=41.487963,2.13841&amp;sspn=0.006317,0.011362&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+de+la+Ind%C3%BAstria,+20,+08290+Cerdanyola+del+Vall%C3%A8s,+Barcelona,+Catalu%C3%B1a,+Catalonia,+Espanya&amp;ll=41.487966,2.138407&amp;spn=0.006317,0.011362&amp;t=m&amp;z=14">Mostra un mapa més gran</a></small></p>
-	</div>
+      <!-- Brand Footer -->
+      <div class="flex items-center space-x-3">
+        <img src="amicsbonsai.gif" alt="Logo Amics del Bonsai" class="h-10 w-auto object-contain">
+        <span class="font-serif font-bold text-base text-stone-800">Amics del Bonsai</span>
       </div>
-    </div>
-    <div class="container card">
-      <div class="row">
-	<div class="col-sm-12">
-	  <p>Pots posar-te en contacte amb nosaltres a:</p>
-	  <p class="contacte"><a href="mailto:&#097;&#109;&#105;&#099;&#115;&#064;&#098;&#111;&#110;&#115;&#097;&#105;&#099;&#101;&#114;&#100;&#097;&#110;&#121;&#111;&#108;&#097;&#046;&#099;&#097;&#116;"><span class="glyphicon glyphicon-envelope"></span> &#097;&#109;&#105;&#099;&#115;&#064;&#098;&#111;&#110;&#115;&#097;&#105;&#099;&#101;&#114;&#100;&#097;&#110;&#121;&#111;&#108;&#097;&#046;&#099;&#097;&#116;</a></p>	  
-	</div>
+
+      <!-- Copyright -->
+      <div class="text-center md:text-right text-xs text-stone-400 font-light flex flex-col leading-normal">
+        <span>© 2026 Amics del Bonsai de Cerdanyola del Vallès.</span>
+        <span>Textura de Subtlepatterns.com</span>
       </div>
+
     </div>
+  </footer>
 
-    <div class="container card">
-      <div class="row">
-	<div class="col-sm-12">
-	  <p>Fotos d'algunes de les nostres mostres de bonsai i kusamono:</p>
-	  <h3>Tenji no bonsai 2015</h3>
-	  <p><iframe class="fotos" src="https://www.flickr.com/photos/parap/22397894374/in/set-72157660467246139/player" width="100%" height="466" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></p>
+  <!-- Lucide and Carousel Scripts -->
+  <script>
+    lucide.createIcons();
 
-	  <h3>Roser de Maig 2013</h3>
-	  <p><iframe class="fotos" src="https://www.flickr.com/photos/rofi/8726978096/in/set-72157633449365315/player" width="100%" height="466" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></p>
+    // Mobile slide-down navigation toggle
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-	  <h3>Tenji no bonsai 2010</h3>
-	  <p><iframe class="fotos" src="https://www.flickr.com/photos/rofi/5194189783/in/set-72157625436875580/player" width="100%" height="466" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></p>
+    function toggleMenu() {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    }
 
-	</div>
-      </div>
-    </div>
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+    }
 
-    <div class="container footer">
-	<p>Amics del bonsai de Cerdanyola del Vallès - Textura de Subtlepatterns.com</p>
-    </div>
-  </body>
+    // 3-Bonsai Showcase Carousel Logic
+    const carouselImages = [
+      { src: 'bonsai-1.jpg', fallback: 'bonsai_winter.png' },
+      { src: 'bonsai-2.jpg', fallback: 'bonsai_green.png' },
+      { src: 'bonsai-3.jpg', fallback: 'bonsai_windswept.png' },
+      { src: 'bonsai-4.jpg', fallback: 'bonsai_spring.png' }
+    ];
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const leftIndex = (currentIndex) % carouselImages.length;
+      const middleIndex = (currentIndex + 1) % carouselImages.length;
+      const rightIndex = (currentIndex + 2) % carouselImages.length;
+
+      const imgLeft = document.getElementById('img-left');
+      const imgMiddle = document.getElementById('img-middle');
+      const imgRight = document.getElementById('img-right');
+
+      if (imgLeft) {
+        imgLeft.src = carouselImages[leftIndex].src;
+        imgLeft.onerror = () => { imgLeft.onerror = null; imgLeft.src = carouselImages[leftIndex].fallback; };
+      }
+      if (imgMiddle) {
+        imgMiddle.src = carouselImages[middleIndex].src;
+        imgMiddle.onerror = () => { imgMiddle.onerror = null; imgMiddle.src = carouselImages[middleIndex].fallback; };
+      }
+      if (imgRight) {
+        imgRight.src = carouselImages[rightIndex].src;
+        imgRight.onerror = () => { imgRight.onerror = null; imgRight.src = carouselImages[rightIndex].fallback; };
+      }
+    }
+
+    function carouselNext() {
+      currentIndex = (currentIndex + 1) % carouselImages.length;
+      updateCarousel();
+    }
+
+    function carouselPrev() {
+      currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
+      updateCarousel();
+    }
+
+    // Initialize carousel on page load
+    updateCarousel();
+  </script>
+</body>
 </html>
