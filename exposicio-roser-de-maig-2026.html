@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exposició del Roser de Maig 2026 — Amics del Bonsai de Cerdanyola</title>
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bonsai: {
+              50: '#FCFAF6',
+              100: '#F4F2EB',
+              200: '#EADFC9',
+              green: '#1F402B',
+              red: '#A24A3B',
+              stone: '#4A4C4A',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FCFAF6;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body class="bg-bonsai-50 text-stone-800 antialiased min-h-screen flex flex-col selection:bg-bonsai-green selection:text-white">
+
+  <!-- ================= HEADER ================= -->
+  <header class="bg-bonsai-50/80 backdrop-blur-md border-b border-stone-200/40 py-5 select-none sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <img src="amicsbonsai.gif" alt="Logo Amics del Bonsai" class="h-10 w-auto object-contain">
+        <div>
+          <span class="font-serif font-bold text-base md:text-lg text-bonsai-green group-hover:text-stone-900 transition tracking-tight block leading-tight">Amics del Bonsai</span>
+          <span class="text-[9px] text-stone-500 font-medium tracking-widest uppercase block leading-none">Cerdanyola del Vallès</span>
+        </div>
+      </a>
+
+      <a href="index.html#nossas-exposicions" class="inline-flex items-center text-xs font-semibold text-bonsai-red uppercase tracking-widest hover:text-stone-600 transition gap-1">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Tornar a la web
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-grow py-12 flex flex-col justify-center select-none overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 w-full flex flex-col">
+      
+      <!-- Top banner / Heading with complete exhibition data -->
+      <div class="max-w-3xl mx-auto text-center mb-10 flex flex-col space-y-3">
+        <span class="text-xs font-bold text-bonsai-red uppercase tracking-widest select-none">33a Edició</span>
+        <h1 class="font-serif font-bold text-3xl sm:text-4xl text-bonsai-green leading-tight">Exposició del Roser de Maig 2026</h1>
+        <p class="text-xs font-medium text-stone-500 uppercase tracking-wider">Nova Ubicació: Escola Sant Martí • Cerdanyola del Vallès</p>
+        <p class="text-stone-600 font-light text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          La mostra d'aquest any es va celebrar a l'Escola Sant Martí. Dissabte 2 de maig de 10 a 14 i de 17 a 20 h i Diumenge 3 de maig de 10 a 14 h. Agraïm la col·laboració de l'Ajuntament de Cerdanyola del Vallès i el disseny del cartell per José Vittone.
+        </p>
+      </div>
+
+      <!-- ================= 3D STACKED IMAGE CAROUSEL ================= -->
+      <div class="relative w-full h-[380px] sm:h-[520px] flex items-center justify-center select-none mb-4 group overflow-visible">
+        
+        <!-- Left Side Card -->
+        <div id="carousel-left" onclick="prevImage()" class="absolute left-0 sm:left-4 z-10 w-[65%] sm:w-[50%] h-[85%] sm:h-[90%] bg-white border border-stone-200/60 rounded-2xl p-1 sm:p-2 shadow-lg scale-90 sm:scale-85 opacity-50 sm:opacity-60 -rotate-3 transition-all duration-500 cursor-pointer flex flex-col overflow-hidden">
+          <div class="w-full h-full overflow-hidden rounded-xl relative select-none bg-stone-50/50 flex items-center justify-center">
+            <img id="img-left" src="exposicion_mayo2026/expo11.jpeg" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+        <!-- Center Active Card (Protagonist: cartel initially) -->
+        <div id="carousel-center" class="absolute z-20 w-[75%] sm:w-[55%] h-[95%] sm:h-[100%] bg-white border border-stone-200/50 rounded-2xl p-1 sm:p-3 shadow-2xl scale-100 opacity-100 transition-all duration-500 flex flex-col overflow-hidden">
+          <div class="w-full h-full overflow-hidden rounded-xl relative bg-stone-50/50 select-none flex items-center justify-center group/card">
+            <img id="img-center" src="exposicion_mayo2026/cartel.jpeg" class="w-full h-full object-contain select-none">
+            
+            <!-- Hover Arrow Buttons inside Center Card -->
+            <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md text-bonsai-green border border-stone-200/60 p-3 sm:p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 focus:outline-none opacity-0 group-hover/card:opacity-100 cursor-pointer">
+              <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            </button>
+            
+            <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md text-bonsai-green border border-stone-200/60 p-3 sm:p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 focus:outline-none opacity-0 group-hover/card:opacity-100 cursor-pointer">
+              <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Side Card -->
+        <div id="carousel-right" onclick="nextImage()" class="absolute right-0 sm:right-4 z-10 w-[65%] sm:w-[50%] h-[85%] sm:h-[90%] bg-white border border-stone-200/60 rounded-2xl p-1 sm:p-2 shadow-lg scale-90 sm:scale-85 opacity-50 sm:opacity-60 rotate-3 transition-all duration-500 cursor-pointer flex flex-col overflow-hidden">
+          <div class="w-full h-full overflow-hidden rounded-xl relative select-none bg-stone-50/50 flex items-center justify-center">
+            <img id="img-right" src="exposicion_mayo2026/expo1.jpeg" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bar with controls -->
+      <div class="flex items-center justify-between mt-6 px-4 select-none text-xs text-stone-600 font-light">
+        <div class="flex items-center space-x-3">
+          <span class="bg-bonsai-100 text-bonsai-green font-semibold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full border border-bonsai-200/40 select-none">Exhibició</span>
+          <span>Imatge <span id="current-index-display" class="font-bold text-bonsai-green text-sm">1</span> de <span id="total-index-display" class="font-bold text-stone-800 text-sm">12</span></span>
+        </div>
+
+        <button id="autoplay-toggle" onclick="toggleAutoplay()" class="flex items-center space-x-2 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3.5 py-1.5 rounded-full border border-stone-200/60 transition duration-300 focus:outline-none text-[11px] font-medium tracking-wide">
+          <span id="autoplay-status" class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-bonsai-red opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-bonsai-red"></span>
+          </span>
+          <span id="autoplay-text">Pausar reproducció</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-bonsai-50 border-t border-stone-200/40 py-10 select-none">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 select-none">
+      <!-- Brand Footer -->
+      <div class="flex items-center space-x-3">
+        <img src="amicsbonsai.gif" alt="Logo Amics del Bonsai" class="h-9 w-auto object-contain">
+        <span class="font-serif font-bold text-base text-stone-800">Amics del Bonsai</span>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center md:text-right text-xs text-stone-400 font-light">
+        <span>© 2026 Amics del Bonsai de Cerdanyola del Vallès.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const images = [
+      'exposicion_mayo2026/cartel.jpeg',
+      'exposicion_mayo2026/expo1.jpeg',
+      'exposicion_mayo2026/expo2.jpeg',
+      'exposicion_mayo2026/expo3.jpeg',
+      'exposicion_mayo2026/expo4.jpeg',
+      'exposicion_mayo2026/expo5.jpeg',
+      'exposicion_mayo2026/expo6.jpeg',
+      'exposicion_mayo2026/expo7.jpeg',
+      'exposicion_mayo2026/expo8.jpeg',
+      'exposicion_mayo2026/expo9.jpeg',
+      'exposicion_mayo2026/expo10.jpeg',
+      'exposicion_mayo2026/expo11.jpeg'
+    ];
+
+    let currentIndex = 0;
+    let autoPlayInterval = null;
+    let autoPlayOn = true;
+
+    const imgLeft = document.getElementById('img-left');
+    const imgCenter = document.getElementById('img-center');
+    const imgRight = document.getElementById('img-right');
+
+    const indexDisplay = document.getElementById('current-index-display');
+    const totalDisplay = document.getElementById('total-index-display');
+    const autoplayText = document.getElementById('autoplay-text');
+    const autoplayStatus = document.getElementById('autoplay-status');
+
+    function updateCarousel() {
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      const nextIndex = (currentIndex + 1) % images.length;
+
+      // Update image sources
+      imgLeft.src = images[prevIndex];
+      imgCenter.src = images[currentIndex];
+      imgRight.src = images[nextIndex];
+
+      // Update object-contain for cartel and object-cover for other photos
+      if (currentIndex === 0) {
+        imgCenter.className = "w-full h-full object-contain select-none";
+      } else {
+        imgCenter.className = "w-full h-full object-cover select-none";
+      }
+
+      // Update counts
+      indexDisplay.innerText = currentIndex + 1;
+      totalDisplay.innerText = images.length;
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateCarousel();
+      if (autoPlayOn) startAutoplay();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateCarousel();
+      if (autoPlayOn) startAutoplay();
+    }
+
+    function startAutoplay() {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(() => {
+        nextImage();
+      }, 4000);
+    }
+
+    function toggleAutoplay() {
+      if (autoPlayOn) {
+        clearInterval(autoPlayInterval);
+        autoPlayOn = false;
+        autoplayText.innerText = 'Activar reproducció';
+        autoplayStatus.classList.add('hidden');
+      } else {
+        autoPlayOn = true;
+        autoplayText.innerText = 'Pausar reproducció';
+        autoplayStatus.classList.remove('hidden');
+        startAutoplay();
+      }
+    }
+
+    // Initialize carousel on start
+    updateCarousel();
+    startAutoplay();
+  </script>
+</body>
+</html>
